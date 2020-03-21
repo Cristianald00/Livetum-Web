@@ -21,7 +21,7 @@
       <a href="index.html">event</a>
       <a href="profile.html">Profile</a>
       <a href="signIn.html">Sign In</a>
-      <a href="signIn.html">Sign Up</a>
+      <a href="signup.html">Sign Up</a>
       <a href="copy.html">Copy</a>
       <!-- <a href="/login">Sign In</a> -->
 
@@ -31,7 +31,7 @@
 
   <script type="text/javascript">
   // Redirect to events page function
-  function redirectToEventPage(eventId) { window.location.href = "/event/"+eventId; }
+  function redirectToEventPage(eventId) { window.location.href = "index.html" + eventId; }
   </script>
 
   <main class="app-page" id="userEventsPage">
@@ -39,25 +39,107 @@
     <!-- User events section -->
     <div id="body-userEventsPage">
 
+      <!-- Group of created events -->
+      <div id="participatingEvents-userEventsPage">
+        <h2>Created Events</h2>
+
+
+        <!-- Single event -->
+        <div class="eventBlock-userEventsPage" onclick="redirectToEventPage('{{id}}')">
+          <div class="eventImage-userEventsPage">
+            <img src="https://images.pexels.com/photos/1045113/pexels-photo-1045113.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+          </div>
+          <div class="eventBody-userEventsPage">
+            <p class="eventTitle-userEventsPage">Event name</p>
+            <div class="eventDetails-userEventsPage">
+              <p>Event location</p>
+              <p>Date</p>
+              <p>Time</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single event -->
+        <div class="eventBlock-userEventsPage" onclick="redirectToEventPage('{{id}}')">
+          <div class="eventImage-userEventsPage">
+            <img src="https://images.pexels.com/photos/1045113/pexels-photo-1045113.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+          </div>
+          <div class="eventBody-userEventsPage">
+            <p class="eventTitle-userEventsPage">Event name</p>
+            <div class="eventDetails-userEventsPage">
+              <p>Event location</p>
+              <p>Date</p>
+              <p>Time</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single event -->
+        <div class="eventBlock-userEventsPage" onclick="redirectToEventPage('{{id}}')">
+          <div class="eventImage-userEventsPage">
+            <img src="https://images.pexels.com/photos/1045113/pexels-photo-1045113.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+          </div>
+          <div class="eventBody-userEventsPage">
+            <p class="eventTitle-userEventsPage">Event name</p>
+            <div class="eventDetails-userEventsPage">
+              <p>Event location</p>
+              <p>Date</p>
+              <p>Time</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
       <!-- Group of participating events -->
       <div id="participatingEvents-userEventsPage">
         <h2>Participating Events</h2>
 
-        {{#each eventsArray}}
+
+        <!-- Single event -->
         <div class="eventBlock-userEventsPage" onclick="redirectToEventPage('{{id}}')">
           <div class="eventImage-userEventsPage">
-            <img src="https://firebasestorage.googleapis.com/v0/b/livecomme-8728b.appspot.com/o/events%2F{{ image_url }}?alt=media" alt="">
+            <img src="https://images.pexels.com/photos/1045113/pexels-photo-1045113.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
           </div>
           <div class="eventBody-userEventsPage">
-            <p class="eventTitle-userEventsPage">{{name}}</p>
+            <p class="eventTitle-userEventsPage">Event name</p>
             <div class="eventDetails-userEventsPage">
-              <p>{{location.address}}</p>
-              <p>{{timestamp}}</p>
-              <p>{{timestamp}}</p>
+              <p>Event location</p>
+              <p>Date</p>
+              <p>Time</p>
             </div>
           </div>
         </div>
-        {{/each}}
+
+        <!-- Single event -->
+        <div class="eventBlock-userEventsPage" onclick="redirectToEventPage('{{id}}')">
+          <div class="eventImage-userEventsPage">
+            <img src="https://images.pexels.com/photos/1045113/pexels-photo-1045113.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+          </div>
+          <div class="eventBody-userEventsPage">
+            <p class="eventTitle-userEventsPage">Event name</p>
+            <div class="eventDetails-userEventsPage">
+              <p>Event location</p>
+              <p>Date</p>
+              <p>Time</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single event -->
+        <div class="eventBlock-userEventsPage" onclick="redirectToEventPage('{{id}}')">
+          <div class="eventImage-userEventsPage">
+            <img src="https://images.pexels.com/photos/1045113/pexels-photo-1045113.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+          </div>
+          <div class="eventBody-userEventsPage">
+            <p class="eventTitle-userEventsPage">Event name</p>
+            <div class="eventDetails-userEventsPage">
+              <p>Event location</p>
+              <p>Date</p>
+              <p>Time</p>
+            </div>
+          </div>
+        </div>
 
       </div>
 
