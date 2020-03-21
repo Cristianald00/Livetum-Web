@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test reyrieve firebase</title>
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="../views/style.css">
+  <link rel="stylesheet" href="../views/responsive.css">
+  <link rel="icon" href="../assets/LogoNoBack.png">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+
+  <div id="header">
+    <nav>
+
+      <a href="index.html">event</a>
+      <a href="profile.html">Profile</a>
+      <a href="signIn.html">Sign In</a>
+      <!-- <a href="/login">Sign In</a> -->
+
+    </nav>
+  </div>
+
+
+  <main class="app-page" id="loginPage">
+
+    <!-- User events section -->
+    <div id="body-loginPage">
+
+      <div id="loginForm-loginPage">
+
+        <form class="" action="" method="post">
+          <table id="formTable-loginPage">
+            <tr>
+              <td>
+                <div id="logo">
+                  <img src="../views/assets/LogoRound.png" alt="Logo Image">
+                </div>
+                <p id="app-name">Livetum</p><br>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="loader-loginPage" class="loader" style="display: none;"></div>
+                <p id="errorMessage-loginPage">Error messages go here</p>
+              </td>
+            </tr>
+            <tr>
+              <td><input id="emailValue" class="formInput" type="email" name="email" value="" placeholder="Email" required></td>
+            </tr>
+            <tr>
+              <td><input id="passwordValue" class="formInput" type="password" name="password" value="" placeholder="Passwords" required></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input id="signInButton" onclick="loginManager()" class="formButton" type="button" name="submit" value="Sign In"></td>
+            </tr>
+            <tr>
+              <td><a href="/signup">Do not have an account? Sign Up</a> </td>
+            </tr>
+          </table>
+        </form>
+
+        <div id="introduction-loginPage">
+          <div id="downloadAppLink">
+            <a href="https://apps.apple.com/us/app/livetum/id1485820519"></a>
+          </div>
+          <br><br>
+          <h3>Personalized content with a Livetum account</h3>
+          <p id="introductionP2-loginPage" >
+            <strong>Follow</strong> events that excite you the most<br>
+            <strong>Join</strong> activities together with friends<br>
+            <strong>Host</strong> and <strong>share</strong> your events
+          </p><br>
+          <a href="/copy" style="color: blue; text-decoration: none;">Privacy Policy for Livetum</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
+  <!-- Include firebase library for authentication -->
+  <script defer src="https://www.gstatic.com/firebasejs/7.2.0/firebase-auth.js"></script>
+  <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyD8APrJ2mtqFDlXYDUWThlIpsHza0D1_-s",
+    authDomain: "livecomme-8728b.firebaseapp.com",
+    databaseURL: "https://livecomme-8728b.firebaseio.com",
+    projectId: "livecomme-8728b",
+    storageBucket: "livecomme-8728b.appspot.com",
+    messagingSenderId: "427415822958",
+    appId: "1:427415822958:web:af15d8ae69b978a6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  var postRequest = new XMLHttpRequest();
+  // ON POST FROM loginManager FUNCTION
+  postRequest.onload = function() {
+    location.replace("/login");
+  }
+
+  // LOGIN TO APP
+  function loginManager() {
+
+    var email = document.getElementById("emailValue").value;
+    var password = document.getElementById("passwordValue").value;
+    var errorBlock = document.getElementById("errorMessage-loginPage");
+
+    if (email && password) {
+      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        //var errorCode = error.code;
+        //var errorMessage = error.message;
+        errorBlock.innerHTML = "The username or password are incorrect";
+      });
+
+      // IF USER IS LOGGED IN, REDIRECT TO PROFILE
+      firebase.auth().onAuthStateChanged( function(user) {
+        if (user) {
+          firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+
+            // Display loader animation, block button and hide errors
+            document.getElementById('loader-loginPage').style.display = "inline-block";
+            errorBlock.innerHTML = "";
+            document.getElementById("signInButton").disabled = true;
+
+            // Send token to backend via HTTPS
+            postRequest.open('POST', '/login');
+            postRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            postRequest.send("token="+idToken);
+          }).catch(function(error) {
+            console.log(error);
+          });
+        }
+      });
+
+
+    } else {
+      errorBlock.innerHTML = "Fields cannot be empty";
+    }
+
+  }
+
+  </script>
+
+
+
+</body>
+</html>

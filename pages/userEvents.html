@@ -1,0 +1,36 @@
+<script type="text/javascript">
+// Redirect to events page function
+function redirectToEventPage(eventId) { window.location.href = "/event/"+eventId; }
+</script>
+
+<main class="app-page" id="userEventsPage">
+
+  <!-- User events section -->
+  <div id="body-userEventsPage">
+
+    <!-- Group of participating events -->
+    <div id="participatingEvents-userEventsPage">
+      <h2>Participating Events</h2>
+
+      {{#each eventsArray}}
+      <div class="eventBlock-userEventsPage" onclick="redirectToEventPage('{{id}}')">
+        <div class="eventImage-userEventsPage">
+          <img src="https://firebasestorage.googleapis.com/v0/b/livecomme-8728b.appspot.com/o/events%2F{{ image_url }}?alt=media" alt="">
+        </div>
+        <div class="eventBody-userEventsPage">
+          <p class="eventTitle-userEventsPage">{{name}}</p>
+          <div class="eventDetails-userEventsPage">
+            <p>{{location.address}}</p>
+            <p>{{timestamp}}</p>
+            <p>{{timestamp}}</p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+
+    </div>
+
+  </div>
+
+
+</main>

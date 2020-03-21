@@ -1,0 +1,48 @@
+<main class="app-page" id="eventPage">
+
+  <!-- Event details section -->
+  <div id="head-eventPage">
+    <div id="eventImage-eventPage">
+      <img src="https://firebasestorage.googleapis.com/v0/b/livecomme-8728b.appspot.com/o/events%2F{{ theEvent.details.image_url }}?alt=media" alt="" >
+    </div>
+    <div id="eventButtons-eventPage">
+      <a class="buttonPage" href="">Join</a>
+    </div>
+    <div id="eventDescSection-eventPage">
+      <div id="eventDetails-eventPage">
+        <p>{{theEvent.details.location.address}}</p>
+        <p>{{theEvent.details.timestamp}}</p>
+        <p>{{theEvent.details.timestamp}}</p>
+      </div>
+      <p id="eventTitle-eventPage">{{theEvent.details.name}}</p>
+      <p id="eventDesc-eventPage">{{theEvent.details.description}}</p>
+    </div>
+  </div>
+
+  <!-- Event posts section, all posts below -->
+  <div id="body-eventPage">
+
+    {{#each postsArray}}
+    <!-- Single post block -->
+    <div class="postContainer-eventPage">
+      <div class="postHeader-eventPage">
+        <div class="postUserImage-eventPage">
+          <img src="https://firebasestorage.googleapis.com/v0/b/livecomme-8728b.appspot.com/o/users%2F{{ user.image_url }}?alt=media" alt="" >
+        </div>
+        <div class="userDetails-eventPage">
+          <p>{{ user.username }}</p>
+          <p>{{ details.timestamp }}</p>
+        </div>
+      </div>
+      <div class="postBody-eventPage">
+        <div class="postImage-eventPage">
+          <img src="https://firebasestorage.googleapis.com/v0/b/livecomme-8728b.appspot.com/o/posts%2F{{ details.image_url }}?alt=media" alt="" >
+        </div>
+        <p>{{ details.comment }}</p>
+      </div>
+    </div>
+    {{/each}}
+
+  </div>
+
+</main>
